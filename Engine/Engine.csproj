@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{67A1BCF8-570F-465E-A873-3B14839A5B99}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Engine</RootNamespace>
+    <AssemblyName>Engine</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Item.cs" />
+    <Compile Include="LivingCreature.cs" />
+    <Compile Include="Location.cs" />
+    <Compile Include="Player.cs" />
+    <Compile Include="World.cs" />
+    <Compile Include="Weapon.cs" />
+    <Compile Include="EnemyShip.cs" />
+    <Compile Include="Shop.cs" />
+    <Compile Include="Mission.cs" />
+    <Compile Include="InventoryItem.cs" />
+    <Compile Include="PlayerMission.cs" />
+    <Compile Include="PlayerShip.cs" />
+    <Compile Include="Ship.cs" />
+    <Compile Include="LootItem.cs" />
+    <Compile Include="QuantityItem.cs" />
+    <Compile Include="Gate.cs" />
+    <Compile Include="Station.cs" />
+    <Compile Include="MissionGiver.cs" />
+    <Compile Include="CloneBay.cs" />
+    <Compile Include="System.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>

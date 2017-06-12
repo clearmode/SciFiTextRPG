@@ -45,9 +45,6 @@ namespace Engine
         public const int SHOP_ID_JITA_IV = 7000;
         public const int SHOP_ID_AMARR_I = 7001;
 
-        public const int CLONE_BAY_ID_JITA_IV = 8000;
-        public const int CLONE_BAY_ID_AMARR_I = 8001;
-
         public const int MISSION_ID_JITA_IV_1 = 9000;
         public const int MISSION_ID_JITA_IV_2 = 9001;
         public const int MISSION_ID_JITA_IV_3 = 9002;
@@ -95,7 +92,11 @@ namespace Engine
 
         private static void InitializePlayerShips()
         {
-            PlayerShip executioner = new PlayerShip("Executioner", 1000, 1000, 4, 1000, 100);
+
+            PlayerShip impairor = new PlayerShip("Impairor", PLAYERSHIP_ID_IMPAIROR, 500, 500, 3, 500);
+            PlayerShips.Add(impairor);
+
+            PlayerShip executioner = new PlayerShip("Executioner", PLAYERSHIP_ID_EXECUTIONER, 1000, 1000, 4, 1000);
             PlayerShips.Add(executioner);
 
         }
@@ -144,19 +145,15 @@ namespace Engine
 
         private static void InitializeLocations()
         {
-            Station jitaIV = new Station("Jita IV", LOCATION_ID_STATION_JITA_IV, SECURITY_LEVEL_JITA);
+            Station jitaIV = new Station("Jita IV", LOCATION_ID_STATION_JITA_IV, SECURITY_LEVEL_JITA, true);
             Shop jitaIVMarket = new Shop("Jita IV Market", SHOP_ID_JITA_IV);
             jitaIV.Market = jitaIVMarket;
             jitaIV.Agents.Add(MissionGiverByID(MISSION_GIVER_ID_JITA_IV_1));
             jitaIV.Agents.Add(MissionGiverByID(MISSION_GIVER_ID_JITA_IV_2));
-            CloneBay jitaIVCloneBay = new CloneBay("Jita IV Clone Bay", CLONE_BAY_ID_JITA_IV);
-            jitaIV.RespawnPoint = jitaIVCloneBay;
 
-            Station amarrI = new Station("Amarr", LOCATION_ID_STATION_AMARR_I, SECURITY_LEVEL_AMARR);
+            Station amarrI = new Station("Amarr", LOCATION_ID_STATION_AMARR_I, SECURITY_LEVEL_AMARR, true);
             Shop amarrIMarket = new Shop("Amarr I Market", SHOP_ID_AMARR_I);
             amarrI.Market = amarrIMarket;
-            CloneBay amarrICloneBay = new CloneBay("Amarr I Clone Bay", CLONE_BAY_ID_AMARR_I);
-            amarrI.RespawnPoint = amarrICloneBay;
 
             Location sun = new Location("Sun", LOCATION_ID_SUN);
             sun.AddEnemy(EnemyByID(ENEMYSHIP_ID_CAPSULEER));
@@ -173,8 +170,8 @@ namespace Engine
             Location asteroidBeltAmarrII = new Location("Amarr II - Asteroid Belt II", LOCATION_ID_ASTEROID_BELT_AMARR_II);
             asteroidBeltJitaI.AddEnemy(EnemyByID(ENEMYSHIP_ID_PIRATE_TWO), 3);
 
-            Gate toAmarr = new Gate("Amarr Gate", LOCATION_ID_GATE_AMARR);
-            Gate toJita = new Gate("Jita Gate", LOCATION_ID_GATE_JITA);
+            Gate toAmarr = new Gate("Stargate (Amarr)", LOCATION_ID_GATE_AMARR);
+            Gate toJita = new Gate("Stargate (Jita)", LOCATION_ID_GATE_JITA);
             toAmarr.Destination = toJita;
             toJita.Destination = toAmarr;
 
@@ -199,7 +196,19 @@ namespace Engine
         {
             return Items.SingleOrDefault(x => x.ID == id);
         }
-        
+
+        public static Location LocationByID(int id)
+        {
+            System system = SystemByLocationID(id);
+
+            return system.Locations.SingleOrDefault(x => x.ID == id);
+        }
+
+        public static System SystemByLocationID(int id)
+        {
+            return Systems.SingleOrDefault(x => x.Locations.SingleOrDefault(y => y.ID == id) != null);
+        }
+
         public static Weapon WeaponByID(int id)
         {
             return (Weapon)Items.SingleOrDefault(x => x.ID == id);

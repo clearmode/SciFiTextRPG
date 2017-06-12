@@ -19,6 +19,11 @@ namespace Engine
             Locations = new List<Location>();
         }
 
+        public override string ToString()
+        {
+            return Name + " " + SecurityLevel;
+        }
+
     }
 }
 

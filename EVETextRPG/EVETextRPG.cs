@@ -6,6 +6,7 @@ namespace EVETextRPG
 	public class EVETextRPG
 	{
 		private static Player _player;
+        public bool ExitGame { private get; private set; }
 
 		private static void Main(String[] args)
 		{
@@ -13,11 +14,9 @@ namespace EVETextRPG
 			string playerName = Console.ReadLine();
 			_player = new Player (playerName, 100, 100, 0, 0);
 
-			bool exit = false;
-
-			while (!exit)
+			while (!ExitGame)
 			{
-				Console.WriteLine(">");
+				Console.Write(">");
 
 				string input = Console.ReadLine()?.ToLower();
 
@@ -32,7 +31,24 @@ namespace EVETextRPG
 
 		private static void ParseInput(string input)
 		{
-			
+            int firstSpacePosition = input.IndexOf(' ');
+            string command;
+
+            if(firstSpacePosition != -1)
+            {
+			    command = input.Substring(0, firstSpacePosition);
+            }
+            else
+            {
+                command = input;
+            }
+
+            switch(command)
+            {
+                case "quit":
+                    ExitGame = true;
+                    break;
+            }
 		}
 	}
 }

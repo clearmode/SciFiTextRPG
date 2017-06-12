@@ -36,7 +36,7 @@ namespace Engine
         {
             for (int i = 0; i < numberOfKillsRequired; i++)
             {
-                KillsRequiredForCompletion.Add(EnemyShip);
+                KillsRequiredForCompletion.Add(enemy);
             }
         }
 

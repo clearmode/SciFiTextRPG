@@ -96,6 +96,7 @@ namespace Engine
         private static void InitializePlayerShips()
         {
             PlayerShip executioner = new PlayerShip("Executioner", 1000, 1000, 4, 1000, 100);
+            PlayerShips.Add(executioner);
 
         }
 

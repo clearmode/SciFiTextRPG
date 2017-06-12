@@ -8,11 +8,11 @@ namespace Engine
 		public int ExperiencePoints { get; set; }
 		public int Money { get; set; }
 
-        public PlayerShip CurrentShip{ get; set; }
-        public Location CurrentLocation{ get; set; }
+        public PlayerShip CurrentShip { get; set; }
+        public Location CurrentLocation { get; set; }
 
         public List<PlayerMission> Missions { get; set; }
-        public List<EnemyShip> CurrentEnemies{ get; set; }
+        public List<EnemyShip> CurrentEnemies { get; set; }
 
 
 		public int Level
@@ -48,6 +48,9 @@ namespace Engine
 			ExperiencePoints = experiencePoints;
         }
 
-        public 
+        public void KillPlayer()
+        {
+
+        }
     }
 }

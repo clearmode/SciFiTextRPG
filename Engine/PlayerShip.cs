@@ -35,7 +35,24 @@ namespace Engine
 
         public bool RemoveItemFromInventory(Item item, int quantity = 1)
         {
-            if(Inventory.SingleOrDefault(x => x.Details == item)
+            InventoryItem invItem = Inventory.SingleOrDefault(x => x.Details == item);
+
+            if(invItem != null && invItem.Quantity > quantity)
+            {
+                invItem.Quantity -= quantity;
+            }
+            else if(invItem != null && invItem.Quantity == quantity)
+            {
+                Inventory.Remove(invItem);
+            }
+            else
+            {
+                return false;
+            }
+
+            UpdateCargoVolume();
+
+            return true;
         }
 
         public void UpdateCargoVolume()

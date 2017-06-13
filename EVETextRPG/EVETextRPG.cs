@@ -61,6 +61,7 @@ namespace EVETextRPG
                 case "quit":
                     ExitGame = true;
                     break;
+
                 case "warp":
                     {
                         bool choiceWasInt = Int32.TryParse(args, out int choice);
@@ -95,8 +96,37 @@ namespace EVETextRPG
                         {
                             Console.WriteLine("Error: Warp usage: Warp <Location Number>");
                         }
+
                         break;
                     }
+
+
+                case "attack":
+                    {
+                        bool choiceWasInt = Int32.TryParse(args, out int choice);
+                        choice--;
+
+                        if (choiceWasInt)
+                        {
+                            if (_player.CurrentEnemies.Count >= choice)
+                            {
+                                _player.AttackEnemy(choice);
+                            }
+                            else
+                            {
+                                Console.WriteLine("Error: Enemy not found.");
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Error: Attack usage: Attack <Enemy Number>");
+                        }
+
+                        break;
+                    }
+                default:
+                    Console.WriteLine("Error: Command not found.");
+                    break;
             }
 		}
 
@@ -112,8 +142,14 @@ namespace EVETextRPG
             {
                 Console.WriteLine("You are at the Gate to " + ((Gate)_player.CurrentLocation).Destination);
             }
-            else if (_player.CurrentEnemies.Any())
+            else
             {
+                Console.WriteLine("You are at " + _player.CurrentLocation);
+            }
+
+            if (_player.CurrentEnemies.Any())
+            {
+                Console.WriteLine();
                 if (_player.CurrentEnemies.Count > 1)
                 {
                     Console.WriteLine("As you leave warp, you spot enemy ships.");
@@ -124,10 +160,6 @@ namespace EVETextRPG
                 }
 
                 PrintEnemies();
-            }
-            else
-            {
-                Console.WriteLine("You are at " + _player.CurrentLocation);
             }
 
             PrintWarps();
@@ -142,12 +174,19 @@ namespace EVETextRPG
 
         private static void PrintEnemies()
         {
+            int count = 1;
+            Console.WriteLine();
+            Console.WriteLine("Enemies:");
+
             foreach (EnemyShip enemy in _player.CurrentEnemies)
             {
-                Console.WriteLine(enemy);
+                Console.WriteLine(count + ": " + enemy);
+                count++;
             }
             
             Console.WriteLine();
+
+            Console.WriteLine("Attack <Enemy Number>");
         }
 
         private static void PrintWarps()

@@ -37,6 +37,7 @@
     <Compile Include="LivingCreature.cs" />
     <Compile Include="Location.cs" />
     <Compile Include="Player.cs" />
+    <Compile Include="RandomIntGenerator.cs" />
     <Compile Include="World.cs" />
     <Compile Include="Weapon.cs" />
     <Compile Include="EnemyShip.cs" />

@@ -12,7 +12,8 @@ namespace Engine
 		public string Name{ get; set;}
 		private List<Weapon> _weapons;
 
-
+        private double RandomDoubleFromZeroToOne => RandomIntGenerator.NumberBetween(0, 100) / 100.0;
+        
 
         public Ship (string name, int id, int currentHealth, int maximumHealth, int numberOfWeaponSlots)
 		{
@@ -32,7 +33,12 @@ namespace Engine
 			}
 		}
 
-		public void UnequipWeapon(int slot)
+        public void EquipWeapon(int weaponID, int slot)
+        {
+            EquipWeapon(World.WeaponByID(weaponID), slot);
+        }
+
+        public void UnequipWeapon(int slot)
 		{
 			_weapons.RemoveAt (slot);
 		}
@@ -45,6 +51,29 @@ namespace Engine
 				Explode();
 			}
 		}
+
+        public int CalculateAttackDamage()
+        {
+            int totalDamage = 0;
+
+            foreach (Weapon weapon in _weapons)
+            {
+                double shotPrecision = RandomDoubleFromZeroToOne;
+                double missChance = 1.0 - weapon.Accuracy;
+
+                if (shotPrecision >= missChance)
+                {
+                    //weapon hits 
+                    totalDamage += RandomIntGenerator.NumberBetween(weapon.MinimumDamage, weapon.MaximumDamage);
+                }
+                else
+                {
+                    //weapon misses
+                }
+            }
+
+            return totalDamage;
+        }
 
 		abstract public void Explode();
 			

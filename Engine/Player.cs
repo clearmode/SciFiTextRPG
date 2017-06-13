@@ -96,6 +96,8 @@ namespace Engine
             CurrentEnemies = new List<EnemyShip>();
 
             StartingShip = World.PlayerShipByID(World.PLAYERSHIP_ID_IMPAIROR);
+            StartingShip.EquipWeapon(World.ITEM_ID_SMALL_LASER_I, 0);
+            StartingShip.EquipWeapon(World.ITEM_ID_SMALL_LASER_I, 1);
 
             GiveStarterShip();
             MoveTo(World.LOCATION_ID_STATION_AMARR_I);
@@ -170,6 +172,28 @@ namespace Engine
         public void MoveTo(int locationID)
         {
             MoveTo(World.LocationByID(locationID));
+        }
+
+        public void AttackEnemy(int index)
+        {
+            int damageDone = CurrentShip.CalculateAttackDamage();
+
+            if (damageDone > 0)
+            {
+                CurrentEnemies.ElementAt(index).TakeDamage(damageDone);
+                RaiseMessage("You hit the " + CurrentEnemies.ElementAt(index) + " for " + damageDone + " damage.");
+                
+                if (!CurrentEnemies.ElementAt(index).IsAlive)
+                {
+                    RaiseMessage(CurrentEnemies.ElementAt(index) + " has been destroyed");
+                    CurrentEnemies.RemoveAt(index);
+                }
+            }
+            else
+            {
+                RaiseMessage("Your shots miss");
+            }
+
         }
 
         private void RaiseMessage(string message, bool addExtraLine = false)

@@ -28,7 +28,7 @@ namespace Engine
         public const int LOCATION_ID_ASTEROID_BELT_AMARR_I = 2002;
         public const int LOCATION_ID_ASTEROID_BELT_AMARR_II = 2003;
         public const int LOCATION_ID_JITA_SUN = 2004;
-        public const int LOCATION_ID_AMARR_SUN = 2004;
+        public const int LOCATION_ID_AMARR_SUN = 2005;
 
         public const int LOCATION_ID_GATE_AMARR = 3000;
         public const int LOCATION_ID_GATE_JITA = 3001;

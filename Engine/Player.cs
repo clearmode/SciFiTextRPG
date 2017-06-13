@@ -6,8 +6,8 @@ namespace Engine
 {
     public class Player : LivingCreature
     {
-		public int ExperiencePoints { get; private set; }
-		public int Money { get; private set; }
+        public int ExperiencePoints { get; private set; }
+        public int Money { get; private set; }
 
         public PlayerShip CurrentShip { get; private set; }
         public Location CurrentLocation { get; private set; }
@@ -37,54 +37,58 @@ namespace Engine
 
         public List<PlayerMission> Missions { get; private set; }
         public List<EnemyShip> CurrentEnemies { get; private set; }
-        
+
         private PlayerShip StartingShip { get; set; }
 
         public event EventHandler PlayerMoved;
         public event EventHandler PlayerDied;
-        
-        public int Level
-		{
-			get 
-			{
-				if (ExperiencePoints < 100)
-				{
-					return 1;
-				} 
-				else if (ExperiencePoints < 300)
-				{
-					return 2;
-				} 
-				else if (ExperiencePoints < 600)
-				{
-					return 3;
-				} 
-				else if (ExperiencePoints < 1000)
-				{
-					return 4;
-				} 
-				else
-				{
-					return 5;
-				}
-			}
-		}
+        public event EventHandler<MessageEventArgs> OnMessage;
 
-		public Player(string name, int currentHealth, int maximumHealth, int money, int experiencePoints) : base(name, currentHealth, maximumHealth)
+        public int Level
         {
-			Money = money;
-			ExperiencePoints = experiencePoints;
+            get
+            {
+                if (ExperiencePoints < 100)
+                {
+                    return 1;
+                }
+                else if (ExperiencePoints < 300)
+                {
+                    return 2;
+                }
+                else if (ExperiencePoints < 600)
+                {
+                    return 3;
+                }
+                else if (ExperiencePoints < 1000)
+                {
+                    return 4;
+                }
+                else
+                {
+                    return 5;
+                }
+            }
+        }
+
+        public Player(string name, int currentHealth, int maximumHealth, int money, int experiencePoints) : base(name, currentHealth, maximumHealth)
+        {
+            Money = money;
+            ExperiencePoints = experiencePoints;
+
+            Missions = new List<PlayerMission>();
+            CurrentEnemies = new List<EnemyShip>();
 
             StartingShip = World.PlayerShipByID(World.PLAYERSHIP_ID_IMPAIROR);
 
             GiveStarterShip();
-            CurrentLocation = World.LocationByID(World.LOCATION_ID_STATION_AMARR_I);
+            MoveTo(World.LOCATION_ID_STATION_AMARR_I);
             SetRespawn(CurrentStation);
         }
 
         public void KillPlayer()
         {
-            PlayerDied(this, null);
+            PlayerDied?.Invoke(this, EventArgs.Empty);
             CurrentShip = null;
             MoveTo(CurrentRespawn);
         }
@@ -144,7 +148,17 @@ namespace Engine
 
             CurrentLocation = location;
 
-            PlayerMoved(this, null);
+            PlayerMoved?.Invoke(this, EventArgs.Empty);
+        }
+
+        public void MoveTo(int locationID)
+        {
+            MoveTo(World.LocationByID(locationID));
+        }
+
+        private void RaiseMessage(string message, bool addExtraLine = false)
+        {
+            OnMessage?.Invoke(this, new MessageEventArgs(message, addExtraLine));
         }
     }
 }

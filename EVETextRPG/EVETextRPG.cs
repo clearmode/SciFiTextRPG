@@ -14,10 +14,15 @@ namespace EVETextRPG
 		{
 			Console.Write("Enter your name: ");
 			string playerName = Console.ReadLine();
-			_player = new Player (playerName, 100, 100, 0, 0);
+            Console.WriteLine("Hello " + playerName + ", welcome to New Eden. Fly safe.");
+            Console.WriteLine();
+            _player = new Player(playerName, 100, 100, 0, 0);
+            PlayerMoved(null, EventArgs.Empty);
 
-            _player.PlayerMoved += new EventHandler(PlayerMoved);
-            _player.PlayerDied += new EventHandler(PlayerDied);
+            _player.PlayerMoved += PlayerMoved;
+            _player.PlayerDied += PlayerDied;
+            _player.OnMessage += WriteMessage;
+
 
 			while (!ExitGame)
 			{
@@ -57,7 +62,7 @@ namespace EVETextRPG
                     ExitGame = true;
                     break;
                 case "warp":
-                    if (_player.CurrentSystem.Locations.Count <= Int32.Parse(args))
+                    if (_player.CurrentSystem.Locations.Count >= Int32.Parse(args))
                     {
                         _player.MoveTo(_player.CurrentSystem.Locations.ElementAt(Int32.Parse(args)));
                     }
@@ -134,6 +139,16 @@ namespace EVETextRPG
         {
             Console.WriteLine("Current System: " + _player.CurrentSystem);
         }
-	}
+
+        private static void WriteMessage(object sender, MessageEventArgs e)
+        {
+            Console.WriteLine(e.Message);
+
+            if (e.AddExtraNewLine)
+            {
+                Console.WriteLine();
+            }
+        }
+    }
 }
 

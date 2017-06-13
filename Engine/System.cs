@@ -21,7 +21,7 @@ namespace Engine
 
         public override string ToString()
         {
-            return Name + " " + SecurityLevel;
+            return Name + " (" + SecurityLevel + ")";
         }
 
     }

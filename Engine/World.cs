@@ -146,14 +146,14 @@ namespace Engine
 
         private static void InitializeLocations()
         {
-            Station stationJitaIV = new Station("Jita IV", LOCATION_ID_STATION_JITA_IV, SECURITY_LEVEL_JITA, true);
+            Station stationJitaIV = new Station("Jita IV - Moon 4 - Caldari Navy Assembly Plant", LOCATION_ID_STATION_JITA_IV, SECURITY_LEVEL_JITA, true);
             Shop jitaIVMarket = new Shop("Jita IV Market", SHOP_ID_JITA_IV);
             stationJitaIV.Market = jitaIVMarket;
             stationJitaIV.Agents.Add(MissionGiverByID(MISSION_GIVER_ID_JITA_IV_1));
             stationJitaIV.Agents.Add(MissionGiverByID(MISSION_GIVER_ID_JITA_IV_2));
 
 
-            Station stationAmarrI = new Station("Amarr", LOCATION_ID_STATION_AMARR_I, SECURITY_LEVEL_AMARR, true);
+            Station stationAmarrI = new Station("Amarr VIII (Oris) - Emperor Family Academy", LOCATION_ID_STATION_AMARR_I, SECURITY_LEVEL_AMARR, true);
             Shop amarrIMarket = new Shop("Amarr I Market", SHOP_ID_AMARR_I);
             stationAmarrI.Market = amarrIMarket;
 
@@ -169,7 +169,7 @@ namespace Engine
             Location asteroidBeltJitaII = new Location("Jita II - Asteroid Belt II", LOCATION_ID_ASTEROID_BELT_JITA_II);
             asteroidBeltJitaI.AddEnemy(EnemyByID(ENEMYSHIP_ID_PIRATE_ONE), 2);
 
-            Location asteroidBeltAmarrI = new Location("Amarr I - Asteroid Belt I - Amarr I", LOCATION_ID_ASTEROID_BELT_AMARR_I);
+            Location asteroidBeltAmarrI = new Location("Amarr I - Asteroid Belt I", LOCATION_ID_ASTEROID_BELT_AMARR_I);
             asteroidBeltJitaI.AddEnemy(EnemyByID(ENEMYSHIP_ID_PIRATE_TWO), 1);
 
             Location asteroidBeltAmarrII = new Location("Amarr II - Asteroid Belt II", LOCATION_ID_ASTEROID_BELT_AMARR_II);

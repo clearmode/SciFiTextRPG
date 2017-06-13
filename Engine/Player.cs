@@ -37,6 +37,22 @@ namespace Engine
 
         public List<PlayerMission> Missions { get; private set; }
         public List<EnemyShip> CurrentEnemies { get; private set; }
+        public List<Location> WarpableLocations
+        {
+            get
+            {
+                List<Location> warpableLocations = new List<Location>();
+                foreach (Location loc in CurrentSystem.Locations)
+                {
+                    if (!loc.Equals(CurrentLocation))
+                    {
+                        warpableLocations.Add(loc);
+                    }
+                }
+
+                return warpableLocations;
+            }
+        }
 
         private PlayerShip StartingShip { get; set; }
 

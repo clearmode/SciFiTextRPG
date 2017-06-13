@@ -27,7 +27,8 @@ namespace Engine
         public const int LOCATION_ID_ASTEROID_BELT_JITA_II = 2001;
         public const int LOCATION_ID_ASTEROID_BELT_AMARR_I = 2002;
         public const int LOCATION_ID_ASTEROID_BELT_AMARR_II = 2003;
-        public const int LOCATION_ID_SUN = 2004;
+        public const int LOCATION_ID_JITA_SUN = 2004;
+        public const int LOCATION_ID_AMARR_SUN = 2004;
 
         public const int LOCATION_ID_GATE_AMARR = 3000;
         public const int LOCATION_ID_GATE_JITA = 3001;
@@ -67,7 +68,7 @@ namespace Engine
             InitializeMissions();
             InitializeMissionGivers();
             InitializeLocations();
-		}
+        }
 
         private static void InitializeItems()
         {
@@ -108,7 +109,7 @@ namespace Engine
             pirate1.EquipWeapon(WeaponByID(ITEM_ID_SMALL_ROCKET_I), 1);
             Enemies.Add(pirate1);
 
-            EnemyShip pirate2 = new EnemyShip("Pirate Two", ENEMYSHIP_ID_PIRATE_ONE, 500, 500, 2, 10, 1000);
+            EnemyShip pirate2 = new EnemyShip("Pirate Two", ENEMYSHIP_ID_PIRATE_TWO, 500, 500, 2, 10, 1000);
             pirate1.EquipWeapon(WeaponByID(ITEM_ID_SMALL_LASER_I), 0);
             pirate1.EquipWeapon(WeaponByID(ITEM_ID_SMALL_LASER_I), 1);
             Enemies.Add(pirate2);
@@ -145,18 +146,22 @@ namespace Engine
 
         private static void InitializeLocations()
         {
-            Station jitaIV = new Station("Jita IV", LOCATION_ID_STATION_JITA_IV, SECURITY_LEVEL_JITA, true);
+            Station stationJitaIV = new Station("Jita IV", LOCATION_ID_STATION_JITA_IV, SECURITY_LEVEL_JITA, true);
             Shop jitaIVMarket = new Shop("Jita IV Market", SHOP_ID_JITA_IV);
-            jitaIV.Market = jitaIVMarket;
-            jitaIV.Agents.Add(MissionGiverByID(MISSION_GIVER_ID_JITA_IV_1));
-            jitaIV.Agents.Add(MissionGiverByID(MISSION_GIVER_ID_JITA_IV_2));
+            stationJitaIV.Market = jitaIVMarket;
+            stationJitaIV.Agents.Add(MissionGiverByID(MISSION_GIVER_ID_JITA_IV_1));
+            stationJitaIV.Agents.Add(MissionGiverByID(MISSION_GIVER_ID_JITA_IV_2));
 
-            Station amarrI = new Station("Amarr", LOCATION_ID_STATION_AMARR_I, SECURITY_LEVEL_AMARR, true);
+
+            Station stationAmarrI = new Station("Amarr", LOCATION_ID_STATION_AMARR_I, SECURITY_LEVEL_AMARR, true);
             Shop amarrIMarket = new Shop("Amarr I Market", SHOP_ID_AMARR_I);
-            amarrI.Market = amarrIMarket;
+            stationAmarrI.Market = amarrIMarket;
 
-            Location sun = new Location("Sun", LOCATION_ID_SUN);
-            sun.AddEnemy(EnemyByID(ENEMYSHIP_ID_CAPSULEER));
+            Location sunJita = new Location("Sun", LOCATION_ID_JITA_SUN);
+            sunJita.AddEnemy(EnemyByID(ENEMYSHIP_ID_CAPSULEER));
+
+            Location sunAmarr = new Location("Sun", LOCATION_ID_AMARR_SUN);
+            sunAmarr.AddEnemy(EnemyByID(ENEMYSHIP_ID_CAPSULEER));
 
             Location asteroidBeltJitaI = new Location("Jita I - Asteroid Belt I", LOCATION_ID_ASTEROID_BELT_JITA_I);
             asteroidBeltJitaI.AddEnemy(EnemyByID(ENEMYSHIP_ID_PIRATE_ONE), 1);
@@ -178,17 +183,17 @@ namespace Engine
             toJita.AddEnemy(EnemyByID(ENEMYSHIP_ID_PIRATE_TWO));
 
             System jita = new System("Jita", SYSTEM_ID_JITA, SECURITY_LEVEL_JITA);
-            jita.Locations.Add(sun);
+            jita.Locations.Add(sunJita);
             jita.Locations.Add(asteroidBeltJitaI);
             jita.Locations.Add(asteroidBeltJitaII);
-            jita.Locations.Add(jitaIV);
+            jita.Locations.Add(stationJitaIV);
             Systems.Add(jita);
 
             System amarr = new System("Amarr", SYSTEM_ID_AMARR, SECURITY_LEVEL_AMARR);
-            amarr.Locations.Add(sun);
+            amarr.Locations.Add(sunAmarr);
             amarr.Locations.Add(asteroidBeltAmarrI);
             amarr.Locations.Add(asteroidBeltAmarrII);
-            amarr.Locations.Add(amarrI);
+            amarr.Locations.Add(stationAmarrI);
             Systems.Add(amarr);
         }
 

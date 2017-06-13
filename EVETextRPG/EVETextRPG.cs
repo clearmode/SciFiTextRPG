@@ -62,15 +62,41 @@ namespace EVETextRPG
                     ExitGame = true;
                     break;
                 case "warp":
-                    if (_player.CurrentSystem.Locations.Count >= Int32.Parse(args))
                     {
-                        _player.MoveTo(_player.CurrentSystem.Locations.ElementAt(Int32.Parse(args)));
+                        bool choiceWasInt = Int32.TryParse(args, out int choice);
+                        choice--;
+
+                        if (choiceWasInt)
+                        {
+                            if (_player.CurrentSystem.Locations.Count >= choice)
+                            {
+                                Location warp = _player.WarpableLocations.ElementAt(choice);
+
+                                Console.WriteLine();
+
+                                if (_player.CurrentStation != null)
+                                {
+                                    Console.WriteLine("You undock and enter warp to " + warp);
+                                }
+                                else
+                                {
+                                    Console.WriteLine("You enter warp to " + warp);
+                                }
+
+                                Console.WriteLine();
+                                _player.MoveTo(warp);
+                            }
+                            else
+                            {
+                                Console.WriteLine("Error: Warp not found.");
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Error: Warp usage: Warp <Location Number>");
+                        }
+                        break;
                     }
-                    else
-                    {
-                        Console.WriteLine("Error: Warp not found.");
-                    }
-                    break;
             }
 		}
 
@@ -101,8 +127,10 @@ namespace EVETextRPG
             }
             else
             {
-
+                Console.WriteLine("You are at " + _player.CurrentLocation);
             }
+
+            PrintWarps();
         }
 
         private static void PlayerDied(object sender, EventArgs e)
@@ -125,13 +153,13 @@ namespace EVETextRPG
         private static void PrintWarps()
         {
             int count = 1;
-            foreach (Location warp in _player.CurrentSystem.Locations)
+
+            Console.WriteLine();
+
+            foreach (Location warp in _player.WarpableLocations)
             {
-                if (!warp.Equals(_player.CurrentLocation))
-                {
-                    Console.WriteLine("Warp " + count + ": " + warp);
-                    count++;
-                }
+                Console.WriteLine("Warp " + count + ": " + warp);
+                count++;
             }
         }
 

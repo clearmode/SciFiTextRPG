@@ -17,48 +17,48 @@ namespace Engine
         public const int ITEM_ID_DANCER = 0001;
         public const int ITEM_ID_SOLDIER = 0002;
         public const int ITEM_ID_LIVESTOCK = 0003;
-        public const int ITEM_ID_SMALL_LASER_I = 0004;
-        public const int ITEM_ID_SMALL_ROCKET_I = 0005;
+        public const int ITEM_ID_SMALL_LASER = 0004;
+        public const int ITEM_ID_SMALL_ROCKET_LAUNCHER = 0005;
 
-        public const int LOCATION_ID_STATION_JITA_IV = 1000;
-        public const int LOCATION_ID_STATION_AMARR_I = 1001;
+        public const int LOCATION_ID_STATION_DITA_IV = 1000;
+        public const int LOCATION_ID_STATION_DMARR_I = 1001;
 
-        public const int LOCATION_ID_ASTEROID_BELT_JITA_I = 2000;
-        public const int LOCATION_ID_ASTEROID_BELT_JITA_II = 2001;
-        public const int LOCATION_ID_ASTEROID_BELT_AMARR_I = 2002;
-        public const int LOCATION_ID_ASTEROID_BELT_AMARR_II = 2003;
-        public const int LOCATION_ID_JITA_SUN = 2004;
-        public const int LOCATION_ID_AMARR_SUN = 2005;
+        public const int LOCATION_ID_ASTEROID_BELT_DITA_I = 2000;
+        public const int LOCATION_ID_ASTEROID_BELT_DITA_II = 2001;
+        public const int LOCATION_ID_ASTEROID_BELT_DMARR_I = 2002;
+        public const int LOCATION_ID_ASTEROID_BELT_DMARR_II = 2003;
+        public const int LOCATION_ID_DITA_SUN = 2004;
+        public const int LOCATION_ID_DMARR_SUN = 2005;
 
-        public const int LOCATION_ID_GATE_AMARR = 3000;
-        public const int LOCATION_ID_GATE_JITA = 3001;
+        public const int LOCATION_ID_GATE_DMARR = 3000;
+        public const int LOCATION_ID_GATE_DITA = 3001;
 
-        public const int SYSTEM_ID_JITA = 4000;
-        public const int SYSTEM_ID_AMARR = 4001;
+        public const int SYSTEM_ID_DITA = 4000;
+        public const int SYSTEM_ID_DMARR = 4001;
 
-        public const int PLAYERSHIP_ID_IMPAIROR = 5000;
-        public const int PLAYERSHIP_ID_EXECUTIONER = 5001;
+        public const int PLAYERSHIP_ID_FRYGET = 5000;
+        public const int PLAYERSHIP_ID_INTERCEPTOR = 5001;
 
         public const int ENEMYSHIP_ID_PIRATE_ONE = 6000;
         public const int ENEMYSHIP_ID_PIRATE_TWO = 6001;
         public const int ENEMYSHIP_ID_CAPSULEER = 6002;
 
-        public const int SHOP_ID_JITA_IV = 7000;
-        public const int SHOP_ID_AMARR_I = 7001;
+        public const int SHOP_ID_DITA_IV = 7000;
+        public const int SHOP_ID_DMARR_I = 7001;
 
-        public const int MISSION_ID_JITA_IV_1 = 9000;
-        public const int MISSION_ID_JITA_IV_2 = 9001;
-        public const int MISSION_ID_JITA_IV_3 = 9002;
-        public const int MISSION_ID_JITA_IV_4 = 9003;
+        public const int MISSION_ID_DITA_IV_1 = 9000;
+        public const int MISSION_ID_DITA_IV_2 = 9001;
+        public const int MISSION_ID_DITA_IV_3 = 9002;
+        public const int MISSION_ID_DITA_IV_4 = 9003;
 
-        public const int MISSION_ID_AMARR_I_1 = 9100;
+        public const int MISSION_ID_DMARR_I_1 = 9100;
 
-        public const int MISSION_GIVER_ID_JITA_IV_1 = 10000;
-        public const int MISSION_GIVER_ID_JITA_IV_2 = 10001;
-        public const int MISSION_GIVER_ID_AMARR_I_1 = 10002;
+        public const int MISSION_GIVER_ID_DITA_IV_1 = 10000;
+        public const int MISSION_GIVER_ID_DITA_IV_2 = 10001;
+        public const int MISSION_GIVER_ID_DMARR_I_1 = 10002;
 
-        public const int SECURITY_LEVEL_JITA = 10;
-        public const int SECURITY_LEVEL_AMARR = 10;
+        public const int SECURITY_LEVEL_DITA = 10;
+        public const int SECURITY_LEVEL_DMARR = 10;
 
 		static World()
         {
@@ -88,117 +88,117 @@ namespace Engine
 
         private static void InitializeWeapons()
         {
-            Weapon smallLaserI = new Weapon("Small Laser I", "Small Laser I's", ITEM_ID_SMALL_LASER_I, 1000, 10, 100, .8);
+            Weapon smallLaserI = new Weapon("Small Laser", "Small Lasers", ITEM_ID_SMALL_LASER, 1000, 10, 100, .8);
             Items.Add(smallLaserI);
 
-            Weapon smallRocketI = new Weapon("Small Rocket I", "Small Rocket I's", ITEM_ID_SMALL_ROCKET_I, 1000, 10, 75, 1);
-            Items.Add(smallRocketI);
+            Weapon smallRocketLauncher = new Weapon("Small Rocket Launcher", "Small Rocket Launchers", ITEM_ID_SMALL_ROCKET_LAUNCHER, 1000, 10, 75, 1);
+            Items.Add(smallRocketLauncher);
         }
 
         private static void InitializePlayerShips()
         {
 
-            PlayerShip impairor = new PlayerShip("Impairor", PLAYERSHIP_ID_IMPAIROR, 500, 500, 3, 500);
-            PlayerShips.Add(impairor);
+            PlayerShip fryget = new PlayerShip("Fryget", PLAYERSHIP_ID_FRYGET, 500, 500, 3, 500);
+            PlayerShips.Add(fryget);
 
-            PlayerShip executioner = new PlayerShip("Executioner", PLAYERSHIP_ID_EXECUTIONER, 1000, 1000, 4, 1000);
-            PlayerShips.Add(executioner);
+            PlayerShip interceptor = new PlayerShip("Executioner", PLAYERSHIP_ID_INTERCEPTOR, 1000, 1000, 4, 1000);
+            PlayerShips.Add(interceptor);
 
         }
 
         private static void InitializeEnemies()
         {
             EnemyShip pirate1 = new EnemyShip("Pirate One", ENEMYSHIP_ID_PIRATE_ONE, 500, 500, 2, 10, 1000);
-            pirate1.EquipWeapon(WeaponByID(ITEM_ID_SMALL_ROCKET_I), 0);
-            pirate1.EquipWeapon(WeaponByID(ITEM_ID_SMALL_ROCKET_I), 1);
+            pirate1.EquipWeapon(WeaponByID(ITEM_ID_SMALL_ROCKET_LAUNCHER), 0);
+            pirate1.EquipWeapon(WeaponByID(ITEM_ID_SMALL_ROCKET_LAUNCHER), 1);
             Enemies.Add(pirate1);
 
             EnemyShip pirate2 = new EnemyShip("Pirate Two", ENEMYSHIP_ID_PIRATE_TWO, 500, 500, 2, 10, 1000);
-            pirate1.EquipWeapon(WeaponByID(ITEM_ID_SMALL_LASER_I), 0);
-            pirate1.EquipWeapon(WeaponByID(ITEM_ID_SMALL_LASER_I), 1);
+            pirate1.EquipWeapon(WeaponByID(ITEM_ID_SMALL_LASER), 0);
+            pirate1.EquipWeapon(WeaponByID(ITEM_ID_SMALL_LASER), 1);
             Enemies.Add(pirate2);
 
-            EnemyShip capsuleer = new EnemyShip("Hostile Capsuleer", ENEMYSHIP_ID_CAPSULEER, 1000, 1000, 4, 50, 10000);
-            capsuleer.EquipWeapon(WeaponByID(ITEM_ID_SMALL_ROCKET_I), 0);
-            capsuleer.EquipWeapon(WeaponByID(ITEM_ID_SMALL_ROCKET_I), 1);
-            capsuleer.EquipWeapon(WeaponByID(ITEM_ID_SMALL_LASER_I), 2);
-            capsuleer.EquipWeapon(WeaponByID(ITEM_ID_SMALL_LASER_I), 3);
+            EnemyShip capsuleer = new EnemyShip("Hostile Clone", ENEMYSHIP_ID_CAPSULEER, 1000, 1000, 4, 50, 10000);
+            capsuleer.EquipWeapon(WeaponByID(ITEM_ID_SMALL_ROCKET_LAUNCHER), 0);
+            capsuleer.EquipWeapon(WeaponByID(ITEM_ID_SMALL_ROCKET_LAUNCHER), 1);
+            capsuleer.EquipWeapon(WeaponByID(ITEM_ID_SMALL_LASER), 2);
+            capsuleer.EquipWeapon(WeaponByID(ITEM_ID_SMALL_LASER), 3);
             Enemies.Add(capsuleer);
         }
 
         private static void InitializeMissions()
         {
-            Mission jitaIV_1 = new Mission("Clear Asteroid Belt I", MISSION_ID_JITA_IV_1, 
+            Mission ditaIV_1 = new Mission("Clear Asteroid Belt I", MISSION_ID_DITA_IV_1, 
                 "Our miners are unable to mine due to pirates in Asteroid Belt I.\n Please go clear them out.", 100, 5000);
-            Missions.Add(jitaIV_1);
+            Missions.Add(ditaIV_1);
 
-            Mission jitaIV_2 = new Mission("Clear Asteroid Belt II", MISSION_ID_JITA_IV_2,
+            Mission ditaIV_2 = new Mission("Clear Asteroid Belt II", MISSION_ID_DITA_IV_2,
                 "Our miners are unable to mine due to pirates in Asteroid Belt II.\n Please go clear them out.", 150, 8000);
-            Missions.Add(jitaIV_2);
+            Missions.Add(ditaIV_2);
         }
 
         private static void InitializeMissionGivers()
         {
-            MissionGiver jitaIV_1 = new MissionGiver("Jita Military Officer", MISSION_GIVER_ID_JITA_IV_1, 1);
-            jitaIV_1.Missions.Add(MissionByID(MISSION_ID_JITA_IV_1));
-            MissionGivers.Add(jitaIV_1);
+            MissionGiver ditaIV_1 = new MissionGiver("Dita Military Officer", MISSION_GIVER_ID_DITA_IV_1, 1);
+            ditaIV_1.Missions.Add(MissionByID(MISSION_ID_DITA_IV_1));
+            MissionGivers.Add(ditaIV_1);
 
-            MissionGiver jitaIV_2 = new MissionGiver("Jita Trade Officer", MISSION_GIVER_ID_JITA_IV_2, 2);
-            jitaIV_2.Missions.Add(MissionByID(MISSION_ID_JITA_IV_2));
-            MissionGivers.Add(jitaIV_2);
+            MissionGiver ditaIV_2 = new MissionGiver("Dita Trade Officer", MISSION_GIVER_ID_DITA_IV_2, 2);
+            ditaIV_2.Missions.Add(MissionByID(MISSION_ID_DITA_IV_2));
+            MissionGivers.Add(ditaIV_2);
         }
 
         private static void InitializeLocations()
         {
-            Station stationJitaIV = new Station("Jita IV - Moon 4 - Caldari Navy Assembly Plant", LOCATION_ID_STATION_JITA_IV, SECURITY_LEVEL_JITA, true);
-            Shop jitaIVMarket = new Shop("Jita IV Market", SHOP_ID_JITA_IV);
-            stationJitaIV.Market = jitaIVMarket;
-            stationJitaIV.Agents.Add(MissionGiverByID(MISSION_GIVER_ID_JITA_IV_1));
-            stationJitaIV.Agents.Add(MissionGiverByID(MISSION_GIVER_ID_JITA_IV_2));
+            Station stationDitaIV = new Station("Dita IV - Moon 4 - Faldari Navy Assembly Plant", LOCATION_ID_STATION_DITA_IV, SECURITY_LEVEL_DITA, true);
+            Shop ditaIVMarket = new Shop("Dita IV Market", SHOP_ID_DITA_IV);
+            stationDitaIV.Market = ditaIVMarket;
+            stationDitaIV.Agents.Add(MissionGiverByID(MISSION_GIVER_ID_DITA_IV_1));
+            stationDitaIV.Agents.Add(MissionGiverByID(MISSION_GIVER_ID_DITA_IV_2));
 
 
-            Station stationAmarrI = new Station("Amarr VIII (Oris) - Emperor Family Academy", LOCATION_ID_STATION_AMARR_I, SECURITY_LEVEL_AMARR, true);
-            Shop amarrIMarket = new Shop("Amarr I Market", SHOP_ID_AMARR_I);
-            stationAmarrI.Market = amarrIMarket;
+            Station stationDmarrI = new Station("Dmarr VIII (Oris) - Emperor Family Academy", LOCATION_ID_STATION_DMARR_I, SECURITY_LEVEL_DMARR, true);
+            Shop dmarrIMarket = new Shop("Dmarr I Market", SHOP_ID_DMARR_I);
+            stationDmarrI.Market = dmarrIMarket;
 
-            Location sunJita = new Location("Sun", LOCATION_ID_JITA_SUN);
-            sunJita.AddEnemy(EnemyByID(ENEMYSHIP_ID_CAPSULEER));
+            Location sunDita = new Location("Sun", LOCATION_ID_DITA_SUN);
+            sunDita.AddEnemy(EnemyByID(ENEMYSHIP_ID_CAPSULEER));
 
-            Location sunAmarr = new Location("Sun", LOCATION_ID_AMARR_SUN);
-            sunAmarr.AddEnemy(EnemyByID(ENEMYSHIP_ID_CAPSULEER));
+            Location sunDmarr = new Location("Sun", LOCATION_ID_DMARR_SUN);
+            sunDmarr.AddEnemy(EnemyByID(ENEMYSHIP_ID_CAPSULEER));
 
-            Location asteroidBeltJitaI = new Location("Jita I - Asteroid Belt I", LOCATION_ID_ASTEROID_BELT_JITA_I);
-            asteroidBeltJitaI.AddEnemy(EnemyByID(ENEMYSHIP_ID_PIRATE_ONE), 1);
+            Location asteroidBeltDitaI = new Location("Dita I - Asteroid Belt I", LOCATION_ID_ASTEROID_BELT_DITA_I);
+            asteroidBeltDitaI.AddEnemy(EnemyByID(ENEMYSHIP_ID_PIRATE_ONE), 1);
 
-            Location asteroidBeltJitaII = new Location("Jita II - Asteroid Belt II", LOCATION_ID_ASTEROID_BELT_JITA_II);
-            asteroidBeltJitaI.AddEnemy(EnemyByID(ENEMYSHIP_ID_PIRATE_ONE), 2);
+            Location asteroidBeltDitaII = new Location("Dita II - Asteroid Belt II", LOCATION_ID_ASTEROID_BELT_DITA_II);
+            asteroidBeltDitaI.AddEnemy(EnemyByID(ENEMYSHIP_ID_PIRATE_ONE), 2);
 
-            Location asteroidBeltAmarrI = new Location("Amarr I - Asteroid Belt I", LOCATION_ID_ASTEROID_BELT_AMARR_I);
-            asteroidBeltJitaI.AddEnemy(EnemyByID(ENEMYSHIP_ID_PIRATE_TWO), 1);
+            Location asteroidBeltDmarrI = new Location("Dmarr I - Asteroid Belt I", LOCATION_ID_ASTEROID_BELT_DMARR_I);
+            asteroidBeltDitaI.AddEnemy(EnemyByID(ENEMYSHIP_ID_PIRATE_TWO), 1);
 
-            Location asteroidBeltAmarrII = new Location("Amarr II - Asteroid Belt II", LOCATION_ID_ASTEROID_BELT_AMARR_II);
-            asteroidBeltJitaI.AddEnemy(EnemyByID(ENEMYSHIP_ID_PIRATE_TWO), 3);
+            Location asteroidBeltDmarrII = new Location("Dmarr II - Asteroid Belt II", LOCATION_ID_ASTEROID_BELT_DMARR_II);
+            asteroidBeltDitaI.AddEnemy(EnemyByID(ENEMYSHIP_ID_PIRATE_TWO), 3);
 
-            Gate toAmarr = new Gate("Stargate (Amarr)", LOCATION_ID_GATE_AMARR);
-            Gate toJita = new Gate("Stargate (Jita)", LOCATION_ID_GATE_JITA);
-            toAmarr.Destination = toJita;
-            toJita.Destination = toAmarr;
+            Gate toDmarr = new Gate("Stargate (Dmarr)", LOCATION_ID_GATE_DMARR);
+            Gate toDita = new Gate("Stargate (Dita)", LOCATION_ID_GATE_DITA);
+            toDmarr.Destination = toDita;
+            toDita.Destination = toDmarr;
 
-            toJita.AddEnemy(EnemyByID(ENEMYSHIP_ID_PIRATE_TWO));
+            toDita.AddEnemy(EnemyByID(ENEMYSHIP_ID_PIRATE_TWO));
 
-            System jita = new System("Jita", SYSTEM_ID_JITA, SECURITY_LEVEL_JITA);
-            jita.Locations.Add(sunJita);
-            jita.Locations.Add(asteroidBeltJitaI);
-            jita.Locations.Add(asteroidBeltJitaII);
-            jita.Locations.Add(stationJitaIV);
-            Systems.Add(jita);
+            System dita = new System("Dita", SYSTEM_ID_DITA, SECURITY_LEVEL_DITA);
+            dita.Locations.Add(sunDita);
+            dita.Locations.Add(asteroidBeltDitaI);
+            dita.Locations.Add(asteroidBeltDitaII);
+            dita.Locations.Add(stationDitaIV);
+            Systems.Add(dita);
 
-            System amarr = new System("Amarr", SYSTEM_ID_AMARR, SECURITY_LEVEL_AMARR);
-            amarr.Locations.Add(sunAmarr);
-            amarr.Locations.Add(asteroidBeltAmarrI);
-            amarr.Locations.Add(asteroidBeltAmarrII);
-            amarr.Locations.Add(stationAmarrI);
-            Systems.Add(amarr);
+            System dmarr = new System("Dmarr", SYSTEM_ID_DMARR, SECURITY_LEVEL_DMARR);
+            dmarr.Locations.Add(sunDmarr);
+            dmarr.Locations.Add(asteroidBeltDmarrI);
+            dmarr.Locations.Add(asteroidBeltDmarrII);
+            dmarr.Locations.Add(stationDmarrI);
+            Systems.Add(dmarr);
         }
 
         public static Item ItemByID(int id)

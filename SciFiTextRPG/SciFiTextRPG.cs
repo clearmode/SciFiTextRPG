@@ -3,9 +3,9 @@ using System.Linq;
 
 using Engine;
 
-namespace EVETextRPG
+namespace SciFiTextRPG
 {
-	public class EVETextRPG
+	public class SciFiTextRPG
 	{
 		private static Player _player;
         private static bool ExitGame { get; set; }
@@ -147,6 +147,8 @@ namespace EVETextRPG
                 Console.WriteLine("You are at " + _player.CurrentLocation);
             }
 
+            Console.WriteLine("Your current ship: " + _player.CurrentShip);
+
             if (_player.CurrentEnemies.Any())
             {
                 Console.WriteLine();
@@ -181,6 +183,8 @@ namespace EVETextRPG
             {
                 Console.WriteLine("You are at " + _player.CurrentLocation);
             }
+
+            Console.WriteLine("Your current ship: " + _player.CurrentShip);
 
             if (_player.CurrentEnemies.Any())
             {

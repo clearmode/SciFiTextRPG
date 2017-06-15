@@ -95,10 +95,10 @@ namespace Engine
             Missions = new List<PlayerMission>();
             CurrentEnemies = new List<EnemyShip>();
 
-            StartingShip = World.PlayerShipByID(World.PLAYERSHIP_ID_IMPAIROR);
+            StartingShip = World.PlayerShipByID(World.PLAYERSHIP_ID_FRYGET);
 
             GiveStarterShip();
-            MoveTo(World.LOCATION_ID_STATION_AMARR_I);
+            MoveTo(World.LOCATION_ID_STATION_DMARR_I);
             SetRespawn(CurrentStation);
         }
 
@@ -134,8 +134,8 @@ namespace Engine
         private void GiveStarterShip()
         {
             CurrentShip = new PlayerShip(StartingShip.Name, StartingShip.ID, StartingShip.CurrentHealth, StartingShip.MaximumHealth, StartingShip.NumberOfWeaponSlots, StartingShip.CargoCapacity);
-            CurrentShip.EquipWeapon(World.ITEM_ID_SMALL_LASER_I, 0);
-            CurrentShip.EquipWeapon(World.ITEM_ID_SMALL_LASER_I, 1);
+            CurrentShip.EquipWeapon(World.ITEM_ID_SMALL_LASER, 0);
+            CurrentShip.EquipWeapon(World.ITEM_ID_SMALL_LASER, 1);
         }
 
         public void MoveTo(Location location)
@@ -160,7 +160,9 @@ namespace Engine
             {
                 foreach (EnemyShip enemy in location.Enemies)
                 {
-                    CurrentEnemies.Add(new EnemyShip(enemy.Name, enemy.ID, enemy.CurrentHealth, enemy.MaximumHealth, enemy.NumberOfWeaponSlots, enemy.ExperiencePointReward, enemy.MoneyReward));
+                    EnemyShip current = new EnemyShip(enemy.Name, enemy.ID, enemy.CurrentHealth, enemy.MaximumHealth, enemy.NumberOfWeaponSlots, enemy.ExperiencePointReward, enemy.MoneyReward);
+                    current.Weapons = enemy.Weapons;
+                    CurrentEnemies.Add(current);
                 }
             }
 
@@ -195,7 +197,21 @@ namespace Engine
                 RaiseMessage("Your shots miss");
             }
 
+            AttackPlayer();
+
             RaiseMessage("", printAllInfo: true);
+        }
+
+        public void AttackPlayer()
+        {
+            RaiseMessage("");
+
+            foreach (EnemyShip enemy in CurrentEnemies)
+            {
+                int damage = enemy.CalculateAttackDamage();
+                CurrentShip.TakeDamage(damage);
+                RaiseMessage("Your ship takes " + damage + " damage from " + enemy.Name);
+            }
         }
 
         private void RaiseMessage(string message, bool printAllInfo = false, bool addExtraLine = false)

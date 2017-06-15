@@ -65,7 +65,6 @@ namespace Engine
             //TODO reset player to clonebay
         }
 
-        
     }
 }
 

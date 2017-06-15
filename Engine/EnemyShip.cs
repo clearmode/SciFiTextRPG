@@ -28,11 +28,7 @@ namespace Engine
 		{
 			ItemDrops.Add(new LootItem(item, quantity, dropRate));
 		}
-
-        public override string ToString()
-        {
-            return Name + " " + CurrentHealth + "/" + MaximumHealth + " HP";
-        }
+        
 	}
 }
 

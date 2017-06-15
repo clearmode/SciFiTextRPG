@@ -177,15 +177,16 @@ namespace Engine
         public void AttackEnemy(int index)
         {
             int damageDone = CurrentShip.CalculateAttackDamage();
+            RaiseMessage("");
 
             if (damageDone > 0)
             {
                 CurrentEnemies.ElementAt(index).TakeDamage(damageDone);
-                RaiseMessage("You hit the " + CurrentEnemies.ElementAt(index) + " for " + damageDone + " damage.");
+                RaiseMessage("You hit the " + CurrentEnemies.ElementAt(index).Name + " for " + damageDone + " damage.", addExtraLine: true);
                 
                 if (!CurrentEnemies.ElementAt(index).IsAlive)
                 {
-                    RaiseMessage(CurrentEnemies.ElementAt(index) + " has been destroyed");
+                    RaiseMessage(CurrentEnemies.ElementAt(index).Name + " has been destroyed", addExtraLine: true);
                     CurrentEnemies.RemoveAt(index);
                 }
             }
@@ -194,11 +195,12 @@ namespace Engine
                 RaiseMessage("Your shots miss");
             }
 
+            RaiseMessage("", printAllInfo: true);
         }
 
-        private void RaiseMessage(string message, bool addExtraLine = false)
+        private void RaiseMessage(string message, bool printAllInfo = false, bool addExtraLine = false)
         {
-            OnMessage?.Invoke(this, new MessageEventArgs(message, addExtraLine));
+            OnMessage?.Invoke(this, new MessageEventArgs(message, printAllInfo, addExtraLine));
         }
     }
 }

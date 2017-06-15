@@ -88,10 +88,10 @@ namespace Engine
 
         private static void InitializeWeapons()
         {
-            Weapon smallLaserI = new Weapon("Small Laser I", "Small Laser I's", ITEM_ID_SMALL_LASER_I, 1000, 10, 20, .8);
+            Weapon smallLaserI = new Weapon("Small Laser I", "Small Laser I's", ITEM_ID_SMALL_LASER_I, 1000, 10, 100, .8);
             Items.Add(smallLaserI);
 
-            Weapon smallRocketI = new Weapon("Small Rocket I", "Small Rocket I's", ITEM_ID_SMALL_ROCKET_I, 1000, 10, 15, 1);
+            Weapon smallRocketI = new Weapon("Small Rocket I", "Small Rocket I's", ITEM_ID_SMALL_ROCKET_I, 1000, 10, 75, 1);
             Items.Add(smallRocketI);
         }
 

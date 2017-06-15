@@ -165,6 +165,32 @@ namespace EVETextRPG
             PrintWarps();
         }
 
+        private static void PrintAllInfo()
+        {
+            PrintSystem();
+
+            if (_player.CurrentLocation is Station)
+            {
+                Console.WriteLine("You are docked in " + _player.CurrentLocation.Name);
+            }
+            else if (_player.CurrentLocation is Gate)
+            {
+                Console.WriteLine("You are at the Gate to " + ((Gate)_player.CurrentLocation).Destination);
+            }
+            else
+            {
+                Console.WriteLine("You are at " + _player.CurrentLocation);
+            }
+
+            if (_player.CurrentEnemies.Any())
+            {
+                Console.WriteLine();
+                PrintEnemies();
+            }
+
+            PrintWarps();
+        }
+
         private static void PlayerDied(object sender, EventArgs e)
         {
             Console.WriteLine("Your ship was destroyed.");
@@ -214,6 +240,11 @@ namespace EVETextRPG
             if (e.AddExtraNewLine)
             {
                 Console.WriteLine();
+            }
+
+            if (e.PrintAllInfo)
+            {
+                PrintAllInfo();
             }
         }
     }

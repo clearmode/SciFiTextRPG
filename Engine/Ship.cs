@@ -55,11 +55,18 @@ namespace Engine
         public int CalculateAttackDamage()
         {
             int totalDamage = 0;
+            foreach (Weapon wep in _weapons)
+            {
+                Console.WriteLine("Equipped: " + wep.Name + " " + wep.MinimumDamage);
+            }
 
             foreach (Weapon weapon in _weapons)
             {
                 double shotPrecision = RandomDoubleFromZeroToOne;
+                Console.WriteLine("shot P" + shotPrecision);
                 double missChance = 1.0 - weapon.Accuracy;
+                Console.WriteLine("Miss %" + missChance);
+                Console.WriteLine("weapon accuracy" + weapon.Accuracy);
 
                 if (shotPrecision >= missChance)
                 {

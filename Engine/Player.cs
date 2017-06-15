@@ -96,8 +96,6 @@ namespace Engine
             CurrentEnemies = new List<EnemyShip>();
 
             StartingShip = World.PlayerShipByID(World.PLAYERSHIP_ID_IMPAIROR);
-            StartingShip.EquipWeapon(World.ITEM_ID_SMALL_LASER_I, 0);
-            StartingShip.EquipWeapon(World.ITEM_ID_SMALL_LASER_I, 1);
 
             GiveStarterShip();
             MoveTo(World.LOCATION_ID_STATION_AMARR_I);
@@ -136,6 +134,8 @@ namespace Engine
         private void GiveStarterShip()
         {
             CurrentShip = new PlayerShip(StartingShip.Name, StartingShip.ID, StartingShip.CurrentHealth, StartingShip.MaximumHealth, StartingShip.NumberOfWeaponSlots, StartingShip.CargoCapacity);
+            CurrentShip.EquipWeapon(World.ITEM_ID_SMALL_LASER_I, 0);
+            CurrentShip.EquipWeapon(World.ITEM_ID_SMALL_LASER_I, 1);
         }
 
         public void MoveTo(Location location)
